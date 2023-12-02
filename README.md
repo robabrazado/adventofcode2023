@@ -12,4 +12,4 @@ I strongly considered touching this thing up before committing it, because it's 
 
 **Day 02 - Cube Conundrum**
 
-One of the rare times that I approached Part 1 in a way that ended up making Part 2 easy! Love when that happens.
+One of the rare times that I approached Part 1 in a way that ended up making Part 2 easy! Love when that happens. I also improved my development life by having the data input into the text box persist between page reloads. Hooray!
