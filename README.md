@@ -1,2 +1,11 @@
-# adventofcode2023
-My solutions (?) for the Advent of Code 2023 adventofcode.com
+These are my solutions for the [Advent of Code](https://adventofcode.com/) 2023. This year I'm starting out with JavaScript with the personal goal of trying to do a little more with visualizations, and I thought maybe I'd try to do something with React? This is my third year jumping into AoC and my first year trying it without Java.
+
+This README is part explanation, part apology, and sometimes blog.
+
+Shoutout to the fun folks at the [Indie Game Reading Club](https://www.indiegamereadingclub.com/) alongside whom I'm doing the Advent of Code again this year! Thanks for the support and encouragement!
+
+---
+
+**Day 01 - Trebuchet?!**
+
+I strongly considered touching this thing up before committing it, because it's a mess and because I went _way_ off the rails trying to track down and squash a bug in Part 2, but...I dunno, I'm here to learn. Took me a little bit to get my head back in a JavaScript/HTML space, but I'm starting to warm up to the environment.
