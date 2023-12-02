@@ -12,4 +12,4 @@ I strongly considered touching this thing up before committing it, because it's 
 
 **Day 02 - Cube Conundrum**
 
-One of the rare times that I approached Part 1 in a way that ended up making Part 2 easy! Love when that happens. Also improved the "template" page by having the input data persist in the textarea between page reloads, which greatly improves my experiences while developing.
+One of the rare times that I approached Part 1 in a way that ended up making Part 2 easy! Love when that happens.
