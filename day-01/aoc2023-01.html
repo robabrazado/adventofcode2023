@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AoC 2023 - Day 01</title>
+    </head>
+    <body>
+        <script src="aoc2023-01.js"></script>
+        <p>Enter the data here:</p>
+        <p><textarea id="data-input"></textarea></p>
+        <p>Then push a button</p>
+        <p><button onclick="document.getElementById('data-output').textContent = doTheThing(document.getElementById('data-input').value);">Part 1</button></p>
+        <p><button onclick="document.getElementById('data-output').textContent = doTheOtherThing(document.getElementById('data-input').value);">Part 2</button></p>
+        <p><button onclick="document.getElementById('test-output').textContent = testOut(document.getElementById('data-input').value);">Test 2</button></p>
+    </body>
+    <p id="data-output"></p>
+    <pre id="test-output" style="text-align: right;"></pre>
+</html>
