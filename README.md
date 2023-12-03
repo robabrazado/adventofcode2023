@@ -6,10 +6,13 @@ Shoutout to the fun folks at the [Indie Game Reading Club](https://www.indiegame
 
 ---
 
-**Day 01 - Trebuchet?!**
+**Day 1 - Trebuchet?!**
 
 I strongly considered touching this thing up before committing it, because it's a mess and because I went _way_ off the rails trying to track down and squash a bug in Part 2, but...I dunno, I'm here to learn. Took me a little bit to get my head back in a JavaScript/HTML space, but I'm starting to warm up to the environment.
 
-**Day 02 - Cube Conundrum**
+**Day 2 - Cube Conundrum**
 
 One of the rare times that I approached Part 1 in a way that ended up making Part 2 easy! Love when that happens. I also improved my development life by having the data input into the text box persist between page reloads. Hooray!
+
+**Day 3 - Gear Ratios**
+In a rush, so will document this later.
