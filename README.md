@@ -31,6 +31,7 @@ Womp-womp. When I started this one, I went back to my old OOP habits, since that
 Trying to learn my lesson from yesterday, I tried to approach this less like trying to write a general purpose tool given the problem description and more like solving this like a math puzzle. Execution time was lickety-split, and I was even able to leverage almost all my part 1 work for part 2! I feel good about how this one went. Even though I was surprised to find myself at this ripe old age finally making use of remembering the quadratic formula. I don't think that's too spoilery, particularly because it was probably the hard way to do it. I feel like most of the work on this one was working out the math, so I put a lot of that thought process in the comments of the source.
 
 **Day 7 - Camel Cards**
+
 Yeah...I think this is going better for me now that I'm actually paying attention to the puzzle question rather than trying to implement a general tool. I think today's the first day I actually felt clever about the solution. By which I mean I didn't go straight to the brute force search approach.
 
 Addendum: it dawned on me looking at my Day 7 code, since I'm tending to stuff both solutions into one file, maybe I'll start doing commits between parts. That way it will be clearer what I had to modify for part 2 when I lean heavily on the part 1 stuff. Like...I was looking at my Day 7 code and without a record of what I changed between parts 1 and 2, it looks by my method signatures that I dislpayed remarkable foresight. XD
