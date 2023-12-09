@@ -39,3 +39,7 @@ Addendum: it dawned on me looking at my Day 7 code, since I'm tending to stuff b
 **Day 8 - Haunted Wasteland**
 
 I was 100% lulled into a false sense of security by the ease of part 1. I went through two or three revisions on part 2 before getting to the answer. I'm keeping spoilers out of the README, so for a record of my failures and thought processes, check the comments in the source. Suffice it to say, my first attempt was the brute force suggested by the problem description and was taking long enough that I didn't think I could just let it run. Actually I probably could have, technically, but it was enough to give me a hint that it probably wasn't the way to go. My second try failed, but not for the reasons I thought. So my third try actually does a little more than it had to, but I learned from the extra stuff that the second try was probably fine and I was just doing it wrong. So I course-corrected the second try, and here we are. It still takes a while, but definitely not as much as the first try, so overall it's a win. I'm pretty sure the algorithm could be improved with better math, but I'm letting this one sit.
+
+**Day 9 - Mirage Maintenance**
+
+Given all the shenanigans of day 8, I have to admit I expected much worse from day 9, but it went pretty fast! I feel like this is one of those rare ones that made me happy to be using JavaScript, because arrays are natively also deques.
