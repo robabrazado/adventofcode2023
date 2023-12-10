@@ -43,3 +43,7 @@ I was 100% lulled into a false sense of security by the ease of part 1. I went t
 **Day 9 - Mirage Maintenance**
 
 Given all the shenanigans of day 8, I have to admit I expected much worse from day 9, but it went pretty fast! I feel like this is one of those rare ones that made me happy to be using JavaScript, because arrays are natively also deques.
+
+**Day 10 - Pipe Maze**
+
+I finished part 1, and at the moment I have no idea how to proceed with part 2, but also I have to abandon the project for a while, so I'll try and think about part 2 and hopefully pick it up again later!
