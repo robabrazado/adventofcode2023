@@ -1,121 +1,121 @@
 function part1(puzzleInput) {
-    const imageGrid = new ImageGrid(puzzleInput.split("\n"));
-    imageGrid.expand();
+    const chart = new GalaxyChart(puzzleInput);
 
-    let output = "";
-    imageGrid.grid.forEach(line => {
-        output += line.join("") + "\n";
-    });
+    let output = chart.toText();
 
-    // Sum the shortest path between all galaxy pairs
-    const galaxies = imageGrid.getGalaxies();
-    const galaxyPairs = [];
-    for (let i = 0; i < galaxies.length; i++) {
-        for (let j = i + 1; j < galaxies.length; j++) {
-            galaxyPairs.push([galaxies[i], galaxies[j]]);
-        }
-    }
+    chart.expand();
+    output += "\n" + chart.toText();
 
-    output += "\n" + galaxyPairs.reduce((a, e) => a + getGalaxyTaxicabDistance(e[0], e[1]), 0);
+    output += "\n" + chart.sumShortestDistanceBetweenEachPair();
 
     return output;
-
 }
 
-function getGalaxyTaxicabDistance(g1, g2) {
-    return Math.abs(g1.rowIdx - g2.rowIdx) + Math.abs(g1.colIdx - g2.colIdx);
+function part2(puzzleInput, scale) {
+    const chart = new GalaxyChart(puzzleInput);
+    chart.expand(scale);
+
+    return chart.sumShortestDistanceBetweenEachPair();
 }
 
-function part2(puzzleInput) {
+/* Complete rewrite for part 2. In part 1 I was literally making and expanding a 2D array,
+ * which proved untenable for part 2. New plan is just to store and modify galaxy positions.
+ * Should be able support both part 1 and part 2, so part 1 is getting refactored for this, too.
+ */
 
-}
+class GalaxyChart {
+    galaxies = []; // {galaxyId:number, rowIdx:number, colIdx:number}
 
-class ImageGrid {
-    grid = [];
-
-    constructor(lines) {
-        lines.forEach(line => {
-            this.grid.push([]);
-            this.grid.at(-1).push(...line.split(""));
+    constructor(puzzleInput) {
+        puzzleInput.split("\n").forEach((line, row) => {
+            let col = -1;
+            while ((col = line.indexOf("#", col + 1)) >= 0) {
+                this.galaxies.push({
+                    galaxyId: this.galaxies.length,
+                    rowIdx: row,
+                    colIdx: col
+                });
+            }
         });
     }
 
-    numRows() {
-        return this.grid.length;
-    }
+    expand(scale = 2) {
+        const numToAdd = scale - 1;
 
-    numCols() {
-        return this.grid.length > 0 ? this.grid[0].length : 0;
-    }
-
-    getRowArray(row) {
-        return Array.from(this.grid[idx]);
-    }
-
-    getColArray(col) {
-        const colArr = [];
-        this.grid.forEach(rowArr => {
-            colArr.push(rowArr[col]);
-        });
-        return colArr;
-    }
-
-    // Expands self per part 1
-    expand() {
-        // Find rows to expand
-        const rowIdxs = [];
-        for (let i = 0; i < this.grid.length; i++) {
-            if (!ImageGrid.#arrHasGalaxy(this.grid[i])) {
-                rowIdxs.push(i);
+        // Collect empty row indices (from highest to lowest)
+        const rowsToExpand = [];
+        const lastRowIdx = this.galaxies.reduce((a, e) => Math.max(a, e.rowIdx), 0);
+        for (let row = lastRowIdx; row >= 0; row--) {
+            if (!this.galaxies.some(e => e.rowIdx === row)) {
+                rowsToExpand.push(row);
             }
         }
 
-        // Expand rows backwards to not mess up the indices
-        rowIdxs.reverse().forEach(i => {
-            this.expandRow(i);
-        });
+        // Slide all coordinates greater than row by the specified scale (will never be equal to row since it's empty)
+        // This is why we did highest to lowest; the highest one gets slid for every one that follows, etc.
+        while (rowsToExpand.length > 0) {
+            const slideIdx = rowsToExpand.shift();
+            this.galaxies.filter(e => e.rowIdx > slideIdx)
+                .forEach(e => {
+                    e.rowIdx += numToAdd;
+                });
+        }
 
-        // Repeat for columns
-        const colIdxs = [];
-        const numCols = this.numCols();
-        for (let i = 0; i <= numCols; i++) {
-            if (!ImageGrid.#arrHasGalaxy(this.getColArray(i))) {
-                colIdxs.push(i);
+        // Repeat the process for columns
+        const colsToExpand = [];
+        const lastColIdx = this.galaxies.reduce((a, e) => Math.max(a, e.colIdx), 0);
+        for (let col = lastRowIdx; col >= 0; col--) {
+            if (!this.galaxies.some(e => e.colIdx === col)) {
+                colsToExpand.push(col);
             }
         }
-        colIdxs.reverse().forEach(i => {
-            this.expandCol(i);
-        });
+        while (colsToExpand.length > 0) {
+            const slideIdx = colsToExpand.shift();
+            this.galaxies.filter(e => e.colIdx > slideIdx)
+                .forEach(e => {
+                    e.colIdx += numToAdd;
+                });
+        }
     }
 
-    expandRow(row) {
-        const newRow = new Array(this.grid[row].length).fill(".");
-        this.grid.splice(row, 0, newRow);
-        return this;
+    // This is a snapshot
+    getGalaxyPairs() {
+        const galaxyPairs = []; // [galaxy1, galaxy2]
+        const numGalaxies = this.galaxies.length;
+        for (let i = 0; i <= numGalaxies - 1; i++) {
+            for (let j = i + 1; j < numGalaxies; j++) {
+                galaxyPairs.push([this.galaxies[i], this.galaxies[j]]);
+            }
+        }
+        return galaxyPairs;
     }
 
-    expandCol(col) {
-        this.grid.forEach(rowArr => {
-            rowArr.splice(col, 0, ".");
-        });
-        return this;
+    // This is a snapshot
+    sumShortestDistanceBetweenEachPair() {
+        return this.getGalaxyPairs().reduce((a, pair) =>
+            a + GalaxyChart.getGalaxyTaxicabDistance(pair[0], pair[1]), 0);
     }
 
-    static #arrHasGalaxy(arr) {
-        return arr.some(e => e === "#");
-    }
-
-    // Array of {galaxyId:number, rowIdx:number, colIdx:number}
-    getGalaxies() {
-        const numCols = this.numCols();
-        const galaxies = [];
-        for (let row = 0; row < this.grid.length; row++) {
-            for (let col = 0; col < numCols; col++) {
-                if (this.grid[row][col] === "#") {
-                    galaxies.push({galaxyId: galaxies.length, rowIdx: row, colIdx: col});
+    // Only call this on a reasonable size chart
+    toText() {
+        let output = "";
+        const lastRowIdx = this.galaxies.reduce((a, e) => Math.max(a, e.rowIdx), 0);
+        const lastColIdx = this.galaxies.reduce((a, e) => Math.max(a, e.colIdx), 0);
+        for (let row = 0; row <= lastRowIdx; row++) {
+            for (let col = 0; col <= lastColIdx; col++) {
+                if (this.galaxies.find(e => e.rowIdx === row && e.colIdx === col)) {
+                    output += "#";
+                } else {
+                    output += ".";
                 }
             }
+            output += "\n";
         }
-        return galaxies;
+        return output;
     }
+
+    static getGalaxyTaxicabDistance(g1, g2) {
+        return Math.abs(g1.rowIdx - g2.rowIdx) + Math.abs(g1.colIdx - g2.colIdx);
+    }
+    
 }

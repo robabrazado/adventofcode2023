@@ -26,7 +26,8 @@
         <p><textarea id="data-input" rows="10" cols="80" onchange="saveInput();"></textarea></p>
         <p>Then push a button</p>
         <p><button onclick="document.getElementById('data-output').textContent = part1(document.getElementById('data-input').value);">Part 1</button></p>
-        <p><button onclick="document.getElementById('data-output').textContent = part2(document.getElementById('data-input').value);">Part 2</button></p>
+        <p><label for="part2-input">Part 2 scale</label> <input id="part2-input" type="text" size="10" value="1000000"/></p>
+        <p><button onclick="document.getElementById('data-output').textContent = part2(document.getElementById('data-input').value, document.getElementById('part2-input').value);">Part 2</button></p>
     </body>
     <p id="data-output" style="font-family: monospace; white-space: pre;"></p>
     <pre id="test-output" style="text-align: right;"></pre>
