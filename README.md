@@ -47,3 +47,6 @@ Given all the shenanigans of day 8, I have to admit I expected much worse from d
 **Day 10 - Pipe Maze**
 
 I finished part 1, and at the moment I have no idea how to proceed with part 2, but also I have to abandon the project for a while, so I'll try and think about part 2 and hopefully pick it up again later!
+
+**Day 11 - Cosmic Expansion**
+
