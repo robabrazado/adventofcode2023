@@ -47,3 +47,7 @@ Given all the shenanigans of day 8, I have to admit I expected much worse from d
 **Day 10 - Pipe Maze**
 
 I finished part 1, and at the moment I have no idea how to proceed with part 2, but also I have to abandon the project for a while, so I'll try and think about part 2 and hopefully pick it up again later!
+
+**Day 11 - Cosmic Expansion**
+
+I started (and finished, as it turned out) this day before finishing up day 10, so I tried to branch the repository so I could check in my changes without exposing my broken day 10 part 2 situation. I guess I won't know if that's gonna work out for me until I finish writing this. (I am in no way a git expert.) In any case, this one was a mixed bag. I got through part 1 easily enough, though it turned out that what I did for part 1 was basically useless for part 2, so for part 2 I rewrote the whole thing. The rewritten version still works fine for part 1, so I refactored part 1 rather than leave the old supporting code in. This is exactly the situation I envisioned when deciding to commit changes between parts, so I hope I can get the repository branches sorted out correctly. In *theory* I should be somewhat(?) close to finishing day 10 part 2? But we know how that goes. Fingers crossed for finishing that up soon, too!
