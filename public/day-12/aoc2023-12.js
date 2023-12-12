@@ -21,7 +21,7 @@ function bruteForceCounts(puzzleInput) {
          */
         const dataArr = damagedData.split("");
         const possCount = 2 ** (dataArr.reduce((a, e) => a + (e === "?" ? 1 : 0), 0));
-console.log(damagedData + ": " + possCount);
+        console.log(damagedData + ": " + possCount);
 
         /* Each instance of the counter is a fixed number of bits that represent the values of the
          * various ? places in the original damaged data. Generate the data, and match it against
@@ -44,7 +44,7 @@ console.log(damagedData + ": " + possCount);
                 matchCount++;
             }
         }
-console.log(damagedData + ": " + matchCount);
+        console.log(damagedData + ": " + matchCount);
         return matchCount;
     });
 }
