@@ -4,7 +4,7 @@ function part1(puzzleInput) {
 }
 
 function part2(puzzleInput) {
-
+    alert("Not done yet");
 }
 
 function bruteForceCounts(puzzleInput) {
