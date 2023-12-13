@@ -60,3 +60,14 @@ I started (and finished, as it turned out) this day before finishing up day 10, 
 
 Part 1 - I know going into this that I'm going to regret doing a brute force, if not for part 1, then almost certainly for part 2. Let's find out...
 
+\[later...\]
+
+Yeah, I halfway regretted it for part 1. It's a little long-running, but it got there. I fully regret it for part 2 by just looking at the problem. I know that it's not going to work. Well...it *might* work with some modification, but it would take a really long time. Trying to figure out a better approach for part 2.
+
+**Day 13 - Point of Incidence**
+
+Part 1 - I haven't finished part 2 from yesterday yet, but I think I can knock this part 1 out quick, and I'm going to try out an idea inspired by one line of thinking from yesterday's puzzle.
+
+\[later...\]
+
+The concept worked fine, but an (unrelated) bug took me a while to hunt down, so I've just left in a lot of extra checking and junk that I didn't need but added during debugging.
