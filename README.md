@@ -75,3 +75,7 @@ The concept worked fine, but an (unrelated) bug took me a while to hunt down, so
 **Day 14 - Reflector Dish**
 
 Part 1 - No fancy strategy, not trying to predict part 2, just straight up implementing the problem as stated. I might be happier treating part 2 as just a whole separate puzzle. :) This is, what, now three part 2s I've left undone? This will probably be the fourth. At the time I'm logging this, it's...less than four hours until the next puzzle drops, so I'm pretty significantly behind "schedule" at this point. Hoping for a catchup day soon!
+
+**Day 15 - Lens Library**
+
+This one flew by! I happened to be around when today's puzzle dropped, and part 1 looked easy enough, so I thought I'd try and knock that out before I turned in for the night. Then, part 2 looked pretty straightforward, too, so I figured I'd give that a shot, and here we are! So that's encouraging; maybe after I sleep I can use the extra time to try and catch up on all the part 2s I've been leaving behind. Heh, it just occurred to me that this one went so fast that I didn't even commit after part 1. In this case, though, it didn't even matter, because I didn't even alter any part 1 code for part 2! Today was a good day!
