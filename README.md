@@ -2,6 +2,8 @@ These are my solutions for the [Advent of Code](https://adventofcode.com/) 2023.
 
 This README is part explanation, part apology, and sometimes blog. I make an effort to keep it spoiler-free.
 
+I'm publishing the live site version of this repository at [aoc2023.robabrazado.com](https://aoc2023.robabrazado.com/).
+
 Shoutout to the fun folks at the [Indie Game Reading Club](https://www.indiegamereadingclub.com/) alongside whom I'm doing the Advent of Code again this year! Thanks for the support and encouragement!
 
 ---
