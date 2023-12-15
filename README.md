@@ -71,3 +71,7 @@ Part 1 - I haven't finished part 2 from yesterday yet, but I think I can knock t
 \[later...\]
 
 The concept worked fine, but an (unrelated) bug took me a while to hunt down, so I've just left in a lot of extra checking and junk that I didn't need but added during debugging.
+
+**Day 14 - Reflector Dish**
+
+Part 1 - No fancy strategy, not trying to predict part 2, just straight up implementing the problem as stated. I might be happier treating part 2 as just a whole separate puzzle. :) This is, what, now three part 2s I've left undone? This will probably be the fourth. At the time I'm logging this, it's...less than four hours until the next puzzle drops, so I'm pretty significantly behind "schedule" at this point. Hoping for a catchup day soon!
