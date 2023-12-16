@@ -78,6 +78,13 @@ The concept worked fine, but an (unrelated) bug took me a while to hunt down, so
 
 Part 1 - No fancy strategy, not trying to predict part 2, just straight up implementing the problem as stated. I might be happier treating part 2 as just a whole separate puzzle. :) This is, what, now three part 2s I've left undone? This will probably be the fourth. At the time I'm logging this, it's...less than four hours until the next puzzle drops, so I'm pretty significantly behind "schedule" at this point. Hoping for a catchup day soon!
 
+Part 2 - I attempted a quick implementation for part 2 based on the work I did for part 1. I knew it was going to be slow to execute, but it was (relatively) quick to code, and on the off chance it wasn't *that* slow, I took a shot. Testing the sample data took something like 3 or 4 hours. Projected time to run on the puzzle input: 25 days. Yeah...time for a redesign.
+
+\[some other day...\]
+
 **Day 15 - Lens Library**
 
 This one flew by! I happened to be around when today's puzzle dropped, and part 1 looked easy enough, so I thought I'd try and knock that out before I turned in for the night. Then, part 2 looked pretty straightforward, too, so I figured I'd give that a shot, and here we are! So that's encouraging; maybe after I sleep I can use the extra time to try and catch up on all the part 2s I've been leaving behind. Heh, it just occurred to me that this one went so fast that I didn't even commit after part 1. In this case, though, it didn't even matter, because I didn't even alter any part 1 code for part 2! Today was a good day!
+
+**Day 16 - The Floor Will Be Lava**
+
