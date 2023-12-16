@@ -60,7 +60,7 @@ class Contraption {
         const numRows = this.grid.length;
         const numCols = numRows ? this.grid[0].length : 0;
 
-        this.lightQueue.push(startingLight);
+        this.lightQueue.push(startingLight); // Afterthought after I already pushed the code: why in the WORLD is this a property instead of a local variable?! Just sleepy, I guess.
 
         while (this.lightQueue.length > 0) {
             const light = this.lightQueue.shift();
