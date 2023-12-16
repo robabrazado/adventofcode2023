@@ -13,7 +13,34 @@ function part1(puzzleInput) {
 }
 
 function part2(puzzleInput) {
-    alert("Not done yet");
+    // This seems fast enough that I can maybe brute force it with the code I already have for part 1
+    // I need the bounds of the input to build the search space.
+    const lines = puzzleInput.split("\n");
+    const numRows = lines.length;
+    const numCols = numRows ? lines[0].length : 0;
+
+    const startingLights = [];
+
+    // Top and bottom edges
+    for (let i = 0; i < numCols; i++) {
+        for (const j of [0, numRows - 1]) {
+            startingLights.push(new BeamHead(j, i, {row: j ? -1 : 1, col: 0}));
+        }
+    }
+
+    // Right and left edges (it's okay that the corners overlap; they need two directions)
+    for (let i = 0; i < numRows; i++) {
+        for (const j of [0, numCols - 1]) {
+            startingLights.push(new BeamHead(i, j, {row: 0, col: j ? -1 : 1}));
+        }
+    }
+
+    // The rest is just try each starting position and save the best result
+    return startingLights.reduce((a, startingLight) => {
+        const contraption = new Contraption(puzzleInput);
+        contraption.light(startingLight);
+        return Math.max(a, contraption.countEnergized());
+    }, 0);
 }
 
 class Contraption {
