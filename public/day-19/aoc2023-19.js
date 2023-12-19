@@ -4,13 +4,18 @@ function part1(puzzleInput) {
         manager.evaluate(part);
     });
 
-    const attrs = "xmas".split("");
     return parts.reduce((a, part) => a + (part.accepted ? part.getTotal() : 0), 0);
 }
 
 function part2(puzzleInput) {
-    alert("Not done yet");
+    const allLines = puzzleInput.split("\n");
+    const analyzer = new WorkflowAnalyzer(allLines.slice(0, allLines.indexOf("")));
+    const results = analyzer.analyze();
+
+    return results.reduce((a, state) => a + (state.accepted ? state.getTotal() : 0), 0);
 }
+
+// //////////////// Part 1 stuff ////////////////
 
 function parseInput(puzzleInput) {
     const allLines = puzzleInput.split("\n");
@@ -23,7 +28,7 @@ function parseInput(puzzleInput) {
 
 function parseParts(partLines) {
     return partLines.map(line => {
-        return new Part(line);
+        return Part.parseLine(line);
     });
 }
 
@@ -36,11 +41,21 @@ class Part {
     workflow;
     accepted;
 
-    constructor(partLine) {
+    constructor(x, m, a, s) {
+        this.x = x;
+        this.m = m;
+        this.a = a;
+        this.s = s;
+    }
+
+    static parseLine(partLine) {
+        const obj = {};
         partLine.slice(1, -1).split(",").forEach(attVal => {
             const [attribute, value] = attVal.split("=").map((e, i) => i ? parseInt(e) : e);
-            this[attribute] = value;
+            obj[attribute] = value;
         });
+        const {x, m, a, s} = obj;
+        return new Part(x, m, a, s);
     }
 
     getTotal() {
@@ -222,5 +237,210 @@ class ResultGoto {
 
     action(part) {
         part.workflow = this.workflowName;
+    }
+}
+
+// //////////////// Part 2 stuff ////////////////
+
+class WorkflowAnalyzer {
+    workflowMap = new Map(); // name:string => workflow:WorkflowTrack
+
+    constructor(lines) {
+        lines.forEach(line => {
+            const braceIdx = line.indexOf("{");
+            this.workflowMap.set(line.slice(0, braceIdx), new WorkflowTrack(line.slice(braceIdx)));
+        });
+    }
+
+    /**
+     * 
+     * 
+     * @returns { PartState[] }
+     */
+    analyze() {
+        const retVal = [];
+        const queue = [];
+        const initialState = new PartState();
+        initialState.workflow = "in";
+        queue.push(initialState);
+
+        while (queue.length > 0) {
+            const state = queue.shift();
+            const results = this.workflowMap.get(state.workflow).analyze(state);
+            results.forEach(resultState => {
+                (resultState.accepted === undefined ? queue : retVal).push(resultState);
+            });
+        }
+        return retVal;
+    }
+}
+
+// Instead of evaluating a part for a result, this will return a list of part states with various results
+class WorkflowTrack {
+    workflowText;
+    rules = [];
+
+    constructor(workflowText) {
+        this.workflowText = workflowText
+        workflowText.slice(1, -1).split(",").forEach(ruleText => this.rules.push(new RuleTrack(ruleText)));
+    }
+
+    /**
+     * 
+     * 
+     * @param { PartState } state 
+     * @returns { PartState[] }
+     */
+    analyze(state) {
+        const resolved = [];
+
+        for (let i = 0; i < this.rules.length && state; i++) {
+            const passFailResults = this.rules[i].analyze(state);
+            if (passFailResults.passing) {
+                resolved.push(passFailResults.passing);
+            }
+            state = passFailResults.failing;
+        }
+        if (state) {
+            // I don't think we should ever get here, but I want to know if we do
+            throw new Error("Ran out of rules but fail states remain");
+        }
+
+        return resolved;
+    }
+
+}
+
+// A rule now takes a starting state and returns up to two other states: passing and failing
+class RuleTrack {
+    ruleText;
+    attribute;
+    operator;
+    value;
+    result;
+
+    constructor(ruleText) {
+        this.ruleText = ruleText;
+        const ruleTextParts = ruleText.split(":");
+        this.result = ruleTextParts.at(-1);
+        if (ruleTextParts.length > 1) {
+            this.attribute = ruleText.charAt(0);
+            this.operator = ruleText.charAt(1);
+            this.value = parseInt(ruleTextParts[0].substring(2));
+        } else {
+            this.operator = "^"; // Yeah, whatever. I introduced a new symbol.
+        }
+    }
+
+    /**
+     * 
+     * @param { PartState } state 
+     * @returns { Object } {passing:PartState, failing:PartState} and either property could be null
+     */
+    analyze(state) {
+        const retVal = {passing: null, failing: null};
+        switch (this.operator) {
+            case "^": // Everyone passes!
+                retVal.passing = state.clone();
+                break;
+            case ">":
+                if (state.hasValuesAbove(this.attribute, this.value)) {
+                    retVal.passing = state.clone().newMin(this.attribute, this.value + 1);
+                    retVal.failing = state.clone().newMax(this.attribute, this.value);
+                } else {
+                    retVal.failing = state.clone();
+                }
+                break;
+            case "<":
+                if (state.hasValuesBelow(this.attribute, this.value)) {
+                    retVal.passing = state.clone().newMax(this.attribute, this.value - 1);
+                    retVal.failing = state.clone().newMin(this.attribute, this.value);
+                } else {
+                    retVal.failing = state.clone();
+                }
+                break;
+            default:
+                throw new Error("Uh oh");
+        }
+
+        // Whatever state is passing gets the results
+        if (retVal.passing) {
+            switch (this.result) {
+                case "A":
+                    retVal.passing.accepted = true;
+                    break;
+                case "R":
+                    retVal.passing.accepted = false;
+                    break;
+                default:
+                    retVal.passing.workflow = this.result;
+            }
+        }
+
+        return retVal;
+    }
+}
+
+// Each of the xmas properties are a list of [min, max] ranges
+// Both newMax and newMin assume an attribute will never have overlapping ranges; we'll see if I live to regret that decision
+// Later: does this even need to be an array of ranges? Will we ever have more than one range at a time in a given state? Oh, well.
+class PartState {
+    static attrs = ["x", "m", "a", "s"];
+    x = [[1, 4000]];
+    m = [[1, 4000]];
+    a = [[1, 4000]];
+    s = [[1, 4000]];
+    accepted;
+    workflow;
+
+    constructor() {}
+
+    newMax(attribute, value) {
+        const rangeIdx = this.#findRangeIdx(attribute, value);
+        if (rangeIdx >= 0) {
+            this[attribute][rangeIdx][1] = value;
+            this[attribute].splice(rangeIdx + 1);
+        }
+        return this;
+    }
+
+    newMin(attribute, value) {
+        const rangeIdx = this.#findRangeIdx(attribute, value);
+        if (rangeIdx >= 0) {
+            this[attribute][rangeIdx][0] = value;
+            this[attribute].splice(0, rangeIdx);
+        }
+        return this;
+    }
+
+    #findRangeIdx(attribute, value) {
+        return this[attribute].findIndex(e => e[0] <= value && e[1] >= value);
+    }
+
+    // Only copies attribute ranges!
+    clone() {
+        const twin = new PartState();
+        PartState.attrs.forEach(attr => {
+            twin[attr] = this[attr].map(arr => arr.slice());
+        });
+        return twin;
+    }
+
+    hasValuesAbove(attribute, value) {
+        return this[attribute].some(range => range[1] > value);
+    }
+
+    hasValuesBelow(attribute, value) {
+        return this[attribute].some(range => range[0] < value);
+    }
+
+    getTotal() {
+        let total = 1;
+        PartState.attrs.forEach(attr => {
+            this[attr].forEach(range => {
+                total *= range[1] - range[0] + 1;
+            });
+        });
+        return total;
     }
 }
