@@ -89,3 +89,14 @@ This one flew by! I happened to be around when today's puzzle dropped, and part 
 **Day 16 - The Floor Will Be Lava**
 
 So...I was up again when the puzzle dropped today, and the original plan was to see if I could do a quick part 1 before bed and then hit part 2 after a night's sleep. Part 1 went pretty well; the plan was like day 14: no real future-proofing, just a straightforward implementation with the intent of redesigning for part 2 later on. But it turned out part 2 was a quick adaptation of my part 1 implementation, and part 1 ran fast enough and the part 2 search space seemed reasonable enough that I thought I could get away with a part 1 brute force, and it turned out I could! So I wound up with another quick day. Not as quick as day 15, but I'll take it! Really hoping to bank some time getting back to earlier stuff.
+
+**Day 17 - Clumsy Crucible**
+
+
+
+**Day 18 - Lavaduct Lagoon**
+
+
+
+**Day 19 - Aplenty**
+
