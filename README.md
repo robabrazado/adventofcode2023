@@ -100,3 +100,7 @@ So...I was up again when the puzzle dropped today, and the original plan was to 
 
 **Day 19 - Aplenty**
 
+At this point I've missed a couple days, and that's in addition to the part 2s from earlier that I still haven't gotten back to. But it feels nice to start anew each day, so I'm taking on today before going back to work on missed stuff.
+
+Part 1 - I have to admit, I love building these little engines. I think the way I did this one involved some poor object design in the general case, but I'm still kinda trying to ignroe the general case for these puzzles. Also the code for this is pretty gnarly-looking; I did a lot of compact JavaScript and not a lot of coding, so...you get what you get. In any case, it turns out what I did for part 1 is largely useless for part 2. Amazingly, I don't think this was the fault of the poor object design mentioned earlier. :) But it does mean for part 2 I'll basically be starting from scratch. Which honestly doesn't bother me so much anymore.
+
