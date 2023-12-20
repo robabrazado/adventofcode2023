@@ -1,5 +1,4 @@
 function part1(puzzleInput, buttonPushCount) {
-    console.log(buttonPushCount);
     const system = CableSystem.parseFromInput(puzzleInput);
 
     for (let i = 1; i <= buttonPushCount; i++) {
@@ -10,7 +9,19 @@ function part1(puzzleInput, buttonPushCount) {
 }
 
 function part2(puzzleInput) {
-    alert("Not done yet");
+    const system = CableSystem.parseFromInput(puzzleInput);
+
+    let pushCount = 0;
+    let logCycle = 1000000;
+    console.log(Date() + ": start");
+    while (!system.lowPulseToRx) {
+        system.pushTheButton();
+        if ((++pushCount % logCycle) === 0) {
+            console.log(Date() + ": " + pushCount + " button pushes! Ah! Ah! Ah!");
+        }
+    }
+
+    return system.getPulseValue();
 }
 
 // Throughout this monstrosity, pulses are represented by booleans: false for low and true for high
@@ -20,6 +31,7 @@ class CableSystem {
     modules = new Map(); // name:string -> module:Module
     lowCount = 0;
     highCount = 0;
+    lowPulseToRx = false;
 
     constructor(moduleList) {
         moduleList.forEach(module => {
@@ -45,7 +57,12 @@ class CableSystem {
 
         while (pulseQueue.length) {
             const currentPulse = pulseQueue.shift();
-//console.log("Processing " + currentPulse);
+            //console.log("Processing " + currentPulse);
+
+            // Part 2 shenanigans
+            if (currentPulse.destinationName === "rx" && !currentPulse.isHigh) {
+                this.lowPulseToRx = true;
+            }
 
             if (currentPulse.isHigh) {
                 this.highCount++;
@@ -56,14 +73,14 @@ class CableSystem {
             const destModule = this.modules.get(currentPulse.destinationName);
             const nextPulses = destModule.sendPulse(currentPulse);
             nextPulses.forEach(pulse => {
-//console.log("\tQueueing " + pulse);
+            //console.log("\tQueueing " + pulse);
                 pulseQueue.push(pulse);
             });
         }
     }
 
     getPulseValue() {
-console.log("Low: " + this.lowCount + "; high: " + this.highCount);
+        // console.log("Low: " + this.lowCount + "; high: " + this.highCount);
         return this.lowCount * this.highCount;
     }
 
@@ -71,6 +88,7 @@ console.log("Low: " + this.lowCount + "; high: " + this.highCount);
         return new CableSystem(puzzleInput.split("\n").
             map(line => Module.parseFromInput(line)));
     }
+
 }
 
 class Pulse {
@@ -106,7 +124,7 @@ class Module {
      * @returns { Pulse[] } 
      */
     sendPulse(pulse) {
-        // console.log("Warning: pulse sent to emtpy module: " + pulse);
+        // console.log("Pulse sent to emtpy module: " + pulse);
         return [];
     }
 
