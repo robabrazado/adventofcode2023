@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AoC 2023 - Day 20 - Pulse Propagation</title>
+    </head>
+    <body onload="populateInput();">
+        <script src="aoc2023-20.js"></script>
+        <script>
+
+            const dataKey = "aoc2023-20-input";
+            function populateInput() {
+                const storedData = sessionStorage.getItem(dataKey);
+                if (storedData) {
+                    document.getElementById("data-input").value = storedData;
+                }
+            }
+
+            function saveInput() {
+                const data = document.getElementById("data-input").value;
+                if (data) {
+                    sessionStorage.setItem(dataKey, data);
+                }
+            }
+        </script>
+        <p>Enter the data here:</p>
+        <p><textarea id="data-input" rows="10" cols="80" onchange="saveInput();"></textarea></p>
+        <p>Then push a button</p>
+        <p><input type="text" id="part1-push-count" value="1000" size="5"/> <label for="part1-push-count">button pushes</label><br/>
+            <button onclick="document.getElementById('data-output').textContent = part1(document.getElementById('data-input').value, parseInt(document.getElementById('part1-push-count').value));">Part 1</button></p>
+        <p><button onclick="document.getElementById('data-output').textContent = part2(document.getElementById('data-input').value);">Part 2</button></p>
+    </body>
+    <p id="data-output" style="font-family: monospace; white-space: pre;"></p>
+    <pre id="test-output" style="text-align: right;"></pre>
+</html>
