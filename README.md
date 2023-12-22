@@ -117,3 +117,5 @@ Part 2 - All right, I guess I should have known better. Based on the fact that I
 **Day 21 - Step Counter**
 
 Part 1 - For no particular reason except the idea got stuck in my head, I tried out a new way of wrapping a grid that I thought would make certain operations easier. I'm not sure if it actually did, but I know it made construction a lot more complicated. :) Anyway, part 1 went pretty quickly, and I'm assuming part 2 will make no use of what I did for part 1. :)
+
+Part 2 - LOL, yeah...part 2 said fuck your grid wrapper. :D
