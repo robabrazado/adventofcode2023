@@ -113,3 +113,7 @@ I know overall I'm going to regret my lack of comments on this one if I ever go 
 Part 1 - This was a lot of fun to think about and implement! Most of my "bugs" were actually me misunderstanding the puzzle instructions, so this one turned out to be more about reading comprehension than clever algorithms. :) Also, with the design I have for part 1, I think I can just roll right through part 2, so I'm gonna give that a shot!
 
 Part 2 - All right, I guess I should have known better. Based on the fact that I'm writing this entry while the trial is still running, I'm gonna say that this implementation is not the intended one to solve this puzzle. That said, since I was going to take a break after part 1 anyway, I'm just gonna let it run for a while and see if we can get there before I run out of memory or my processor melts.
+
+**Day 21 - Step Counter**
+
+Part 1 - For no particular reason except the idea got stuck in my head, I tried out a new way of wrapping a grid that I thought would make certain operations easier. I'm not sure if it actually did, but I know it made construction a lot more complicated. :) Anyway, part 1 went pretty quickly, and I'm assuming part 2 will make no use of what I did for part 1. :)
