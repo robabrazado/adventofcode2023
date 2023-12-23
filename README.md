@@ -96,7 +96,7 @@ So...I was up again when the puzzle dropped today, and the original plan was to 
 
 **Day 18 - Lavaduct Lagoon**
 
-
+\[Logging on day 21\] Part 1 - I don't remember now why I never got around to trying part 1 on they day-of. I think I just had other stuff to do and didn't have time.
 
 **Day 19 - Aplenty**
 
@@ -114,8 +114,17 @@ Part 1 - This was a lot of fun to think about and implement! Most of my "bugs" w
 
 Part 2 - All right, I guess I should have known better. Based on the fact that I'm writing this entry while the trial is still running, I'm gonna say that this implementation is not the intended one to solve this puzzle. That said, since I was going to take a break after part 1 anyway, I'm just gonna let it run for a while and see if we can get there before I run out of memory or my processor melts.
 
+\[Later: Also, I forgot to mention: Starting with this puzzle (largely because of coming out of Day 19) I learned a little bit about the JavaScript syntax for inheritance, so I'm starting to make use of that. In a broader context, the familiarity of the syntax is masking my lack of understanding of the difference between class-based and prototype-based structures, but for the time being, I'll take it.\]
+
 **Day 21 - Step Counter**
 
 Part 1 - For no particular reason except the idea got stuck in my head, I tried out a new way of wrapping a grid that I thought would make certain operations easier. I'm not sure if it actually did, but I know it made construction a lot more complicated. :) Anyway, part 1 went pretty quickly, and I'm assuming part 2 will make no use of what I did for part 1. :)
 
 Part 2 - LOL, yeah...part 2 said fuck your grid wrapper. :D
+
+**Day 22 - Sand Slabs**
+
+**Day 23 - A Long Walk**
+
+Part 1 - This took me a little while to get through, and admittedly much of it was just trying to get the text representation to work, which I didn't even really need and just wanted to look at. ANYway, the solution took a surprisingly long time to execute, which tells me I'm probably on the wrong track for part 2, but that's not going to stop me from trying reusing the code anyway. :)
+
