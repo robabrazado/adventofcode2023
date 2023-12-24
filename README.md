@@ -128,3 +128,7 @@ Part 2 - LOL, yeah...part 2 said fuck your grid wrapper. :D
 
 Part 1 - This took me a little while to get through, and admittedly much of it was just trying to get the text representation to work, which I didn't even really need and just wanted to look at. ANYway, the solution took a surprisingly long time to execute, which tells me I'm probably on the wrong track for part 2, but that's not going to stop me from trying reusing the code anyway. :)
 
+**Day 24 - Never Tell Me The Odds**
+
+Part 1 - I had to take a nice little trip back to high school geometry for this one, but I think it worked out. Oddly, the toughest part (and the part I never solved, actually) was trying to get the program to validate the initial results, because I kept running into floating point precision issues that I just couldn't reason through. Eventually I scrapped the validation and just hoped the math was right, and since I eventually satisfied the puzzle, I guess it was at least close enough?! If I'm extremely ambitious, maybe I'll go back and try and figure out what the hell with the rounding of the decimals, but...not today.
+
